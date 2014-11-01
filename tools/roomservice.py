@@ -69,20 +69,16 @@ def add_auth(githubreq):
     if githubauth:
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
-if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:CyanogenMod+in:name" % device)
+page = 1
+while not depsonly:
+    githubreq = urllib.request.Request("https://api.github.com/users/CyanogenMod/repos?per_page=200&page=%d" % page)
     add_auth(githubreq)
     result = json.loads(urllib.request.urlopen(githubreq).read().decode())
-    try:
-        numresults = int(result['total_count'])
-    except:
-        print("Failed to search GitHub (offline?)")
-        sys.exit()
-    if (numresults == 0):
-        print("Could not find device %s on github.com/CyanogenMod" % device)
-        sys.exit()
-    for res in result['items']:
+    if len(result) == 0:
+        break
+    for res in result:
         repositories.append(res)
+    page = page + 1
 
 local_manifests = r'.repo/local_manifests'
 if not os.path.exists(local_manifests): os.makedirs(local_manifests)
