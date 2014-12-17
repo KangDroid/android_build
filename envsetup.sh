@@ -2010,6 +2010,8 @@ function mka() {
             schedtool -B -n 1 -e ionice -n 1 make -j$(cat /proc/cpuinfo | grep "^processor" | wc -l) "$@"
             ;;
     esac
+	rm -rf out/target/product/*/recovery
+	echo "Now you are using mka command. out/target/product/hammerhead/recovery has deleted."
 }
 
 function reposync() {
