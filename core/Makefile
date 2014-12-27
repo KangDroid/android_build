@@ -1679,7 +1679,7 @@ endif
 ifeq ($(CHANGELOG),true)
 # Generate changelog
 	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
-	$(hide) ./vendor/pa/utils/changelog.sh
+	$(hide) ./vendor/kdp/utils/changelog.sh
 	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
 endif
 
