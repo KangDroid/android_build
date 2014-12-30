@@ -1680,7 +1680,7 @@ ifeq ($(CHANGELOG),true)
 # Generate changelog
 	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
 	$(hide) ./vendor/kdp/utils/changelog.sh
-	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
+	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(shell date -u +%Y%m%d).txt
 endif
 
 endif    # recovery_fstab is defined
