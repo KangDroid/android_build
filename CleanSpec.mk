@@ -305,6 +305,9 @@ $(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
 # 5.0.2
 $(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/build.prop)
 
+# Clean my ChangeLog:KangDroid-Project
+$(call add-clean-step, rm -rf vendor/kdp/utils/KangDroid-Project_ChangeLog.txt)
+
 # ************************************************
 # NEWER CLEAN STEPS MUST BE AT THE END OF THE LIST
 # ************************************************
