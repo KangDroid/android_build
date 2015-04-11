@@ -43,6 +43,20 @@ EOF
     echo $A
 }
 
+while [ $# -gt 0 ]; do
+  ARG=$1
+  ARG_PARMS="$ARG_PARMS '$ARG'"
+  shift
+  case "$ARG" in
+    block)
+	export BLOCK_UPDATE=false
+      ;;
+    *)
+      error "$ARG is not a block or null type block or just leave alone"
+      ;;
+  esac
+done
+
 # Get the value of a build variable as an absolute path.
 function get_abs_build_var()
 {

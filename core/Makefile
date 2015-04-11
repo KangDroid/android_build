@@ -25,8 +25,6 @@ else
   FILE_NAME_TAG := $(BUILD_NUMBER)
 endif
 
-BLOCK_UPDATE := true
-
 # -----------------------------------------------------------------
 # Define rules to copy PRODUCT_COPY_FILES defined by the product.
 # PRODUCT_COPY_FILES contains words like <source file>:<dest file>[:<owner>].
