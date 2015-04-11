@@ -52,7 +52,7 @@ while [ $# -gt 0 ]; do
 	export BLOCK_UPDATE=false
       ;;
     *)
-      error "$ARG is not a block or null type block or just leave alone"
+    export BLOCK_UPDATE=true
       ;;
   esac
 done
