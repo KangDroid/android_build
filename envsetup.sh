@@ -43,6 +43,8 @@ EOF
     echo $A
 }
 
+export BLOCK_UPDATE=true
+
 while [ $# -gt 0 ]; do
   ARG=$1
   ARG_PARMS="$ARG_PARMS '$ARG'"
@@ -50,9 +52,6 @@ while [ $# -gt 0 ]; do
   case "$ARG" in
     block)
 	export BLOCK_UPDATE=false
-      ;;
-    *)
-    export BLOCK_UPDATE=true
       ;;
   esac
 done
