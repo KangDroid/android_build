@@ -44,6 +44,7 @@ EOF
 }
 
 export BLOCK_UPDATE=true
+export KDP_BUILD_TYPE=null
 
 while [ $# -gt 0 ]; do
   ARG=$1
@@ -53,6 +54,9 @@ while [ $# -gt 0 ]; do
     block)
 	export BLOCK_UPDATE=false
       ;;
+    release)
+	export KDP_BUILD_TYPE=release
+	  ;;
   esac
 done
 
