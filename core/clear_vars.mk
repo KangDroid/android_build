@@ -258,7 +258,4 @@ LOCAL_CLANG_64:=
 # that expects to be able to find the name of the current makefile.
 MAKEFILE_LIST := $(lastword $(MAKEFILE_LIST))
 
-ifdef SM_VENDOR
-  # Include sabermod clean_vars
-  include $(SM_VENDOR)/build/clear_vars.mk
-endif
+include $(BUILD_SYSTEM)/sabermod/clear_vars.mk
