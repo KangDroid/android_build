@@ -2419,7 +2419,8 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell cat /system/build.prop | grep -q "ro.kdp.device=$CM_BUILD");
+    if (adb shell cat /system/build.prop | grep -q "ro.kdp.device=$CM_BUILD") || [ "$FORCE_PUSH" == "true" ];
+
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+[^0-9]+' \
