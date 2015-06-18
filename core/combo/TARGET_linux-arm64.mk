@@ -35,10 +35,10 @@ TARGET_ARCH_VARIANT := armv8
 endif
 
 # Decouple NDK library selection with platform compiler version
-TARGET_NDK_GCC_VERSION := 4.9
+TARGET_NDK_GCC_VERSION := 5.1
 
 ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
-TARGET_GCC_VERSION := 4.9
+TARGET_GCC_VERSION := 5.1
 else
 TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
@@ -112,6 +112,10 @@ TARGET_GLOBAL_LDFLAGS += \
 			-Wl,--fatal-warnings \
 			-Wl,-maarch64linux \
 			$(arch_variant_ldflags)
+
+TARGET_GLOBAL_CFLAGS += $(BOARD_GLOBAL_CFLAGS)
+TARGET_GLOBAL_CPPFLAGS += $(BOARD_GLOBAL_CPPFLAGS)
+TARGET_GLOBAL_LDFLAGS += $(BOARD_GLOBAL_LDFLAGS)
 
 TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 
