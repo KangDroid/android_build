@@ -72,15 +72,16 @@ def add_auth(githubreq):
 if not depsonly:
     githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:CyanogenMod+in:name+fork:true" % device)
     add_auth(githubreq)
+    result = json.loads(urllib.request.urlopen(githubreq).read().decode())
     try:
-        result = json.loads(urllib.request.urlopen(githubreq).read().decode())
-    except urllib.error.URLError:
-        print("Failed to search GitHub")
+        numresults = int(result['total_count'])
+    except:
+        print("Failed to search GitHub (offline?)")
         sys.exit()
-    except ValueError:
-        print("Failed to parse return data from GitHub")
+    if (numresults == 0):
+        print("Could not find device %s on github.com/CyanogenMod" % device)
         sys.exit()
-    for res in result.get('items', []):
+    for res in result['items']:
         repositories.append(res)
 
 local_manifests = r'.repo/local_manifests'
