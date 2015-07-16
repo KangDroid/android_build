@@ -168,12 +168,24 @@ else
 KERNEL_TOOLCHAIN_PREFIX := $(TARGET_KERNEL_CROSS_COMPILE_PREFIX)
 endif
 
-ifeq ($(KERNEL_TOOLCHAIN),)
-KERNEL_TOOLCHAIN_PATH := $(KERNEL_TOOLCHAIN_PREFIX)
-else
-ifneq ($(KERNEL_TOOLCHAIN_PREFIX),)
-KERNEL_TOOLCHAIN_PATH := $(KERNEL_TOOLCHAIN)/$(KERNEL_TOOLCHAIN_PREFIX)
+ifeq ($(KERNEL_ARCH),x86)
+KERNEL_TOOLCHAIN_PATH := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-6.0/bin/$(KERNEL_TOOLCHAIN_PREFIX)
 endif
+
+ifeq ($(KERNEL_ARCH),x86_64)
+KERNEL_TOOLCHAIN_PATH := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-6.0/bin/$(KERNEL_TOOLCHAIN_PREFIX)
+endif
+
+ifeq ($(KERNEL_ARCH),arm)
+KERNEL_TOOLCHAIN_PATH := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-6.0/bin/arm-eabi-
+endif
+
+ifeq ($(KERNEL_ARCH),arm64)
+KERNEL_TOOLCHAIN_PATH := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-6.0/bin/$(KERNEL_TOOLCHAIN_PREFIX)
+endif
+
+ifeq ($(KERNEL_ARCH),mips)
+KERNEL_TOOLCHAIN_PATH := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/mips/mips-linux-android-6.0/bin/$(KERNEL_TOOLCHAIN_PREFIX)
 endif
 
 ifneq ($(USE_CCACHE),)
