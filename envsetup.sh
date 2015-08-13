@@ -1973,6 +1973,35 @@ function cafremote()
     echo "Remote 'caf' created"
 }
 
+function kdp()
+{
+    git remote rm cyanogenmod 2> /dev/null
+    GERRIT_REMOTE=$(git config --get remote.github.projectname)
+	echo $GERRIT_REMOTE > /tmp/cat
+	REAL_PROJECT=$(grep "KangDroid" /tmp/cat | cut -d '/' -f2)
+    git remote add cyanogenmod git://github.com/CyanogenMod/$REAL_PROJECT.git
+	git fetch cyanogenmod
+	
+	#Cleanup
+	rm -rf /tmp/cat
+	unset GERRIT_REMOTE
+	unset REAL_PROJECT
+}
+
+function kangdroid()
+{
+    git remote rm kangdroid 2> /dev/null
+    GERRIT_REMOTE=$(git config --get remote.github.projectname)
+    if [ -z "$GERRIT_REMOTE" ]
+    then
+        echo Unable to set up the git remote, are you under a git repo?
+        return 0
+    fi
+    CMUSER=$(git config --get review.review.cyanogenmod.org.username)
+    git remote add kangdroid git@github.com:$GERRIT_REMOTE.git
+	git fetch kangdroid
+}
+
 function installboot()
 {
     if [ ! -e "$OUT/recovery/root/etc/recovery.fstab" ];
