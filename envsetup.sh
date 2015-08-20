@@ -13,6 +13,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - mmp:     Builds all of the modules in the current directory and pushes them to the device.
 - mmmp:    Builds all of the modules in the supplied directories and pushes them to the device.
 - mmma:    Builds all of the modules in the supplied directories, and their dependencies.
+- makedeftool Build or compile default adb, fastboot for host.
 - cgrep:   Greps on all local C/C++ files.
 - ggrep:   Greps on all local Gradle files.
 - jgrep:   Greps on all local Java files.
@@ -1003,6 +1004,17 @@ function mmma()
   else
     echo "Couldn't locate the top of the tree.  Try setting TOP."
   fi
+}
+
+function makedeftool()
+{
+	Defdir=$(gettop)
+	KDPHOST=$(uname -s)
+	echo "Building adb for $KDPHOST."
+	cd $Defdir/system/core/adb && mma
+	echo "Building fastboot for $KDPHOST."
+	cd $Defdir/system/core/fastboot && mma
+	cd $Defdir
 }
 
 function croot()
